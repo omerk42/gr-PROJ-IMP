@@ -1,0 +1,27 @@
+{
+  "name": "EnftyMartHTML",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@popperjs/core": "^2.10.2",
+    "bootstrap": "^5.1.1",
+    "choices.js": "9.0.1",
+    "clipboard": "^2.0.8",
+    "intl-tel-input": "^17.0.13",
+    "isotope-layout": "^3.0.6",
+    "swiper": "^7.0.4"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.3.0",
+    "gulp-file-include": "^2.3.0",
+    "gulp-sass": "^5.0.0",
+    "node-sass": "^6.0.1"
+  },
+  "description": ""
+}
