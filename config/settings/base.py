@@ -266,7 +266,11 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_ADAPTER = "zaid.users.adapters.AccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/forms.html
-ACCOUNT_FORMS = {"signup": "zaid.users.forms.UserSignupForm"}
+ACCOUNT_FORMS = {
+    "signup": "zaid.users.forms.UserSignupForm",
+    "login":  "zaid.users.forms.UserLoginForm",
+
+    }
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 SOCIALACCOUNT_ADAPTER = "zaid.users.adapters.SocialAccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/forms.html

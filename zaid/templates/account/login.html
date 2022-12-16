@@ -21,7 +21,7 @@
                             <p>Login to countinue</p>
                         </div>
 
-                        <form class="login" method="POST" action="{% url 'account_login' %}">
+                        <form  data-jsv-form="true" class="login" method="POST" action="{% url 'account_login' %}">
                           {% csrf_token %}
                           {{ form|crispy }}
                           {% if redirect_field_value %}

@@ -1,4 +1,4 @@
-from allauth.account.forms import SignupForm
+from allauth.account.forms import SignupForm, LoginForm
 from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 from django.contrib.auth import forms as admin_forms
 from django.contrib.auth import get_user_model
@@ -33,6 +33,43 @@ class UserSignupForm(SignupForm):
     Check UserSocialSignupForm for accounts created from social.
     """
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Email 
+        self.fields['email'].widget.attrs['data-jsv-validators'] = 'require,email,length'
+        self.fields['email'].widget.attrs['data-jsv-min'] = '6'
+        self.fields['email'].widget.attrs['data-jsv-max'] = '255'
+        # Username
+        self.fields['username'].widget.attrs['data-jsv-validators'] = 'require,length'
+        self.fields['username'].widget.attrs['data-jsv-min'] = '6'
+        self.fields['username'].widget.attrs['data-jsv-max'] = '255'
+        # Password
+        self.fields['password1'].widget.attrs['data-jsv-validators'] = 'require,length'
+        self.fields['password1'].widget.attrs['data-jsv-min'] = '6'
+        self.fields['password1'].widget.attrs['data-jsv-max'] = '255'
+        # Password Confirm
+        self.fields['password2'].widget.attrs['data-jsv-validators'] = 'require,length,compare'
+        self.fields['password2'].widget.attrs['data-jsv-compare'] = 'password1'
+        self.fields['password2'].widget.attrs['data-jsv-min'] = '6'
+        self.fields['password2'].widget.attrs['data-jsv-max'] = '255'
+
+
+class UserLoginForm(LoginForm):
+    """
+    Form that will be rendered on user login
+    """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Username
+        self.fields['login'].widget.attrs['data-jsv-validators'] = 'require,length'
+        self.fields['login'].widget.attrs['data-jsv-min'] = '6'
+        self.fields['login'].widget.attrs['data-jsv-max'] = '255'
+        # Password
+        self.fields['password'].widget.attrs['data-jsv-validators'] = 'require,length'
+        self.fields['password'].widget.attrs['data-jsv-min'] = '6'
+        self.fields['password'].widget.attrs['data-jsv-max'] = '255'
+
+    
 
 class UserSocialSignupForm(SocialSignupForm):
     """

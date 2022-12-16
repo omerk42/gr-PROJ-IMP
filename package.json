@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp build"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +15,7 @@
     "clipboard": "^2.0.8",
     "intl-tel-input": "^17.0.13",
     "isotope-layout": "^3.0.6",
+    "js-simple-validations": "^0.2.9",
     "swiper": "^7.0.4"
   },
   "devDependencies": {

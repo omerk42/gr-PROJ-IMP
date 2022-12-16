@@ -17,8 +17,15 @@
 /*! isotope  */
 @@include('@@nodeRoot/node_modules/isotope-layout/dist/isotope.pkgd.min.js');
 
+/* Cutom libraries by devs*/
+/*! js-simple-validations */
+@@include('@@nodeRoot/node_modules/js-simple-validations/dist/js-simple-validations-full.js');
+
+/* End of Custom libraries */
+
 /*! choices select js  */
 @@include('@@nodeRoot/node_modules/choices.js/public/assets/scripts/choices.min.js');
+
 
 /*! Animation Functions */
 @@include('vendors/functions.min.js');
