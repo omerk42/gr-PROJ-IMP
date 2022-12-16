@@ -3,10 +3,11 @@
 
 {% block title %}User: {{ object.username }}{% endblock %}
 
-{% block content %}
-<div class="container">
+{% block body %}
+<section class="user-section section-space-b pt-4 pt-md-5 mt-md-3">
+  <div class="container">
+      <div class="row align-items-center justify-content-center">
 
-  <div class="row">
     <div class="col-sm-12">
 
       <h2>{{ object.username }}</h2>
@@ -31,4 +32,5 @@
 {% endif %}
 
 </div>
-{% endblock content %}
+</section>
+{% endblock %}

@@ -6,7 +6,13 @@
 {% block head_title %}{% translate "Confirm E-mail Address" %}{% endblock %}
 
 
-{% block inner %}
+{% block body %}
+<section class="login-section section-space-b pt-4 pt-md-5 mt-md-3">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-6 mb-5 mb-lg-0 d-none d-lg-block">
+                <img src="/static/images/login.png" alt="" class="img-fluid">
+            </div><!-- end col-lg-6 -->                              <div class="col-lg-6 col-md-9">
 <h1>{% translate "Confirm E-mail Address" %}</h1>
 
 {% if confirmation %}
@@ -28,4 +34,6 @@
 
 {% endif %}
 
+</div></div></div>
+</section>
 {% endblock %}

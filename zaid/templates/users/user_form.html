@@ -3,7 +3,12 @@
 
 {% block title %}{{ user.username }}{% endblock %}
 
-{% block content %}
+{% block body %}
+<section class="user-email section-space-b pt-4 pt-md-5 mt-md-3">
+  <div class="container">
+      <div class="row align-items-center justify-content-center">
+
+    <div class="col-sm-12">
   <h1>{{ user.username }}</h1>
   <form class="form-horizontal" method="post" action="{% url 'users:update' %}">
     {% csrf_token %}
@@ -14,6 +19,7 @@
       </div>
     </div>
   </form>
-
+</div>
+</div></div></section>
  
 {% endblock %}
