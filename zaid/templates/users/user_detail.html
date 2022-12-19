@@ -3,34 +3,132 @@
 
 {% block title %}User: {{ object.username }}{% endblock %}
 
+{% block header %}
+
+<header class="header-section has-header-main">
+  <!-- .header-main-->
+  <!-- <div class="hero-wrap sub-header" style="background-image: url('images/thumb/bread-bg-2.jpg')"> -->
+      <div class="overlay"></div>
+      <div class="container">
+          <div class="hero-content py-0 d-flex align-items-center">
+              <div class="avatar avatar-3 flex-shrink-0">
+                  <!-- <img src="images/thumb/avatar.jpg" alt="avatar"> -->
+              </div><!-- end avatar -->
+              <div class="author-hero-content-wrap d-flex flex-wrap justify-content-between ms-3 flex-grow-1">
+                  <div class="author-hero-content me-3">
+                      <h4 class="hero-author-title mb-1 text-white">{{ user.username }}</h4>
+                      <!-- <p class="hero-author-username mb-1 text-white">@kamran_76</p> -->
+                  </div><!-- end author-hero-content -->
+                  <div class="hero-action-wrap d-flex align-items-center my-2">
+                      <!-- <a href="profile.html" class="btn btn-light">Profile</a> -->
+                  </div>
+              </div><!-- end author-hero-content-wrap -->
+          </div><!-- hero-content -->
+      </div><!-- .container-->
+  </div><!-- end hero-wrap -->
+</header>
+
+
+{% endblock header %}
+
+
 {% block body %}
-<section class="user-section section-space-b pt-4 pt-md-5 mt-md-3">
+
+<section class="profile-section section-space">
   <div class="container">
-      <div class="row align-items-center justify-content-center">
+      <div class="row">
+          <!-- end col -->
+          <div class="col-lg-9 ps-xl-5">
+              <div class="user-panel-title-box">
+                  <h3>Account Settings</h3>
+              </div><!-- end user-panel-title-box -->
+              <div class="profile-setting-panel-wrap">
+                  <ul class="nav nav-tabs nav-tabs-s1 nav-tabs-mobile-size" id="myTab" role="tablist">
+                      <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="account-information-tab" data-bs-toggle="tab" data-bs-target="#account-information" type="button" role="tab" aria-controls="account-information" aria-selected="false"> Edit Info </button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                          <button class="nav-link active" id="change-password-tab" data-bs-toggle="tab" data-bs-target="#change-password" type="button" role="tab" aria-controls="change-password" aria-selected="true"> Password </button>
+                      </li>
+                      
+                  </ul>
+                  <div class="tab-content mt-4" id="myTabContent">
+                      <div class="tab-pane fade" id="account-information" role="tabpanel" aria-labelledby="account-information-tab">
+                          <div class="profile-setting-panel">
+                              <h5 class="mb-4">Edit Profile</h5>
+                              <div class="d-flex align-items-center">
+                                  <div class="image-result-area avatar avatar-3">
+                                      <img id="image-result" src="images/thumb/avatar-9.jpg" alt="">
+                                  </div>
+                                  <input class="upload-image" data-target="image-result" id="upload-image-file" type="file" hidden="">
+                                  <label for="upload-image-file" class="upload-image-label btn">Update Photo</label>
+                              </div><!-- end d-flex -->
+                              <div class="row mt-4">
+                                  <div class="col-lg-6 mb-3">
+                                    <form method="post" action="{% url 'users:update' %}"></form>
+                                    {% csrf_token %}
+                                      <label for="displayName" class="form-label">Username</label>
+                                      <input type="text" id="id_name" name="name" class="form-control form-control-s1" value="{{user.username}}">
+                                     
+                                     <a class="btn btn-dark mt-3" href="{% url 'users:update' %}" role="button">change username</a>
+                                  </div><!-- end col -->
 
-    <div class="col-sm-12">
+                              <div class="mb-3">
+                                  <label for="emailAddress" class="form-label">Email</label>
+                                  <input type="email" id="emailAddress" class="form-control form-control-s1" value="{{user.email}}">
+                                  <a class="btn btn-dark mt-3" href="{% url 'account_email' %}" role="button">Email Settings</a>
+                              </div>      
+                          </div><!-- end profile-setting-panel -->
+                      </div><!-- end tab-pane -->
+                    </div>
+                      <div class="tab-pane fade active show" id="change-password" role="tabpanel" aria-labelledby="change-password-tab">
+                          <div class="profile-setting-panel">
+                              <!-- <h5 class="mb-4">Change Password</h5>
+                              <div class="mb-3">
+                                  <label for="oldPassword" class="form-label">Old Password</label>
+                                  <div class="position-relative">
+                                      <input type="password" class="form-control form-control-s1" id="oldPassword" placeholder="Old password">
+                                      <a href="oldPassword" class="password-toggle" title="Toggle show/hide pasword">
+                                          <em class="password-shown ni ni-eye-off"></em>
+                                          <em class="password-hidden ni ni-eye"></em>
+                                      </a>
+                                  </div>
+                              </div>
+                              <div class="mb-3">
+                                  <label for="newPassword" class="form-label">New Password</label>
+                                  <div class="position-relative">
+                                      <input type="password" class="form-control form-control-s1" id="newPassword" placeholder="New password">
+                                      <a href="newPassword" class="password-toggle" title="Toggle show/hide pasword">
+                                          <em class="password-shown ni ni-eye-off"></em>
+                                          <em class="password-hidden ni ni-eye"></em>
+                                      </a>
+                                  </div>
+                              </div>
+                              <div class="mb-3">
+                                  <label for="confirmNewPassword" class="form-label">Confirm New Password</label>
+                                  <div class="position-relative">
+                                      <input type="password" class="form-control form-control-s1" id="confirmNewPassword" placeholder="Confirm new password">
+                                      <a href="confirmNewPassword" class="password-toggle" title="Toggle show/hide pasword">
+                                          <em class="password-shown ni ni-eye-off"></em>
+                                          <em class="password-hidden ni ni-eye"></em>
+                                      </a>
+                                  </div>
+                              </div> -->
+                              
+                              <a class="btn btn-dark mt-3" href="{% url 'account_change_password' %}" role="button">change Password</a>
+                          </div><!-- end profile-setting-panel -->
+                     
 
-      <h2>{{ object.username }}</h2>
-      {% if object.name %}
-        <p>{{ object.name }}</p>
-      {% endif %}
-    </div>
-  </div>
-
-{% if object == request.user %}
-<!-- Action buttons -->
-<div class="row">
-
-  <div class="col-sm-12">
-    <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
-    <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
-    <!-- Your Stuff: Custom user template urls -->
-  </div>
-
-</div>
-<!-- End Action buttons -->
-{% endif %}
-
-</div>
+                              </ul>
+                          </div><!-- end profile-setting-panel -->
+                      </div><!-- end tab-pane -->
+                  </div><!-- end tab-content -->
+              </div><!-- end profile-setting-panel-wrap-->
+          </div><!-- end col -->
+      </div><!-- end row -->
+  </div><!-- end container -->
 </section>
+
+
+
 {% endblock %}
