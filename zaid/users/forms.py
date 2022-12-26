@@ -1,4 +1,4 @@
-from allauth.account.forms import SignupForm, LoginForm
+from allauth.account.forms import SignupForm, LoginForm,ResetPasswordForm, EmailAwarePasswordResetTokenGenerator
 from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 from django.contrib.auth import forms as admin_forms
 from django.contrib.auth import get_user_model
@@ -7,6 +7,11 @@ from allauth.account.forms import ChangePasswordForm
 
 User = get_user_model()
 
+"""
+FOR MORE INFO GO HERE 
+https://django-allauth.readthedocs.io/en/latest/forms.html
+
+"""
 
 class UserAdminChangeForm(admin_forms.UserChangeForm):
     class Meta(admin_forms.UserChangeForm.Meta):
@@ -36,7 +41,7 @@ class UserSignupForm(SignupForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Email 
+        # Email
         self.fields['email'].widget.attrs['data-jsv-validators'] = 'require,email,length'
         self.fields['email'].widget.attrs['data-jsv-min'] = '6'
         self.fields['email'].widget.attrs['data-jsv-max'] = '255'
@@ -59,6 +64,7 @@ class UserLoginForm(LoginForm):
     """
     Form that will be rendered on user login
     """
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Username
@@ -70,7 +76,6 @@ class UserLoginForm(LoginForm):
         self.fields['password'].widget.attrs['data-jsv-min'] = '6'
         self.fields['password'].widget.attrs['data-jsv-max'] = '255'
 
-    
 
 class UserSocialSignupForm(SocialSignupForm):
     """
@@ -80,12 +85,14 @@ class UserSocialSignupForm(SocialSignupForm):
     """
 
 
-class MyCustomChangePasswordForm(ChangePasswordForm):
+class UserResetPasswordForm( ResetPasswordForm):
+    """
+    Form that will be rendered when user want to reset password
+    """
 
-    def save(self):
-
-        # Ensure you call the parent class's save.
-        # .save() does not return anything
-        super(MyCustomChangePasswordForm, self).save()
-
-        # Add your own processing here.
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Email
+        self.fields['email'].widget.attrs['data-jsv-validators'] = 'require,length,email'
+        self.fields['email'].widget.attrs['data-jsv-min'] = '12'
+        self.fields['email'].widget.attrs['data-jsv-max'] = '255'

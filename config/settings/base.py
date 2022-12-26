@@ -271,7 +271,7 @@ ACCOUNT_ADAPTER = "zaid.users.adapters.AccountAdapter"
 ACCOUNT_FORMS = {
     "signup": "zaid.users.forms.UserSignupForm",
     "login":  "zaid.users.forms.UserLoginForm",
-
+    "reset_password":  "zaid.users.forms.UserResetPasswordForm",
     }
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 SOCIALACCOUNT_ADAPTER = "zaid.users.adapters.SocialAccountAdapter"
