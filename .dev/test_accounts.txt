@@ -1,0 +1,4 @@
+Customer:
+email:sultan@email.com
+username:sultan
+password: O8zHd3vYDRkXrJlY2xI29EbULgwnq4bo
