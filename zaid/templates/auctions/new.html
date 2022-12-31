@@ -1,0 +1,34 @@
+
+{% extends "../base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+{% load crispy_forms_tags %}
+
+
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block body %}
+<section class="create-section section-space-b pt-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="section-head-sm">
+                    <a href="{% url 'auctions' %}" class="btn-link fw-semibold"><em class="ni ni-arrow-left"></em>Auctions</a>
+                    <h1 class="mt-2">Create new Auction</h1>
+                </div><!-- end section-head -->
+                <form enctype="multipart/form-data" action="{% url 'create_auction' %}" class="form-create mb-5 mb-lg-0">
+                    {% csrf_token %}
+                    {{ form|form }}
+                    </div><!-- end form-item -->
+                    <button class="btn btn-dark" type="submit">Create Auction</button>
+                </form>
+            </div><!-- endn col -->
+        </div><!-- row-->
+    </div><!-- container -->
+</section>
+{% endblock%}
+
+           
+        

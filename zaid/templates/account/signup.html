@@ -20,9 +20,9 @@
                     <h2 class="mb-3">Sign Up to <span class="text-primary">Zaid</span></h2>
                     <p>Fill up the below fields to create an account</p>
                 </div>
-                <form data-jsv-form="true" class="form-horizontal" method="post" action="{% url 'account_signup' %}">
+                <form data-jsv-form-incomplete-tooltip="[MESSAGE]"	 data-jsv-form="true" class="form-horizontal" method="post" action="{% url 'account_signup' %}">
                     {% csrf_token %}
-                    {{ form|crispy }}
+                    {% crispy form %}
                     {% if redirect_field_value %}
                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                     {% endif %}

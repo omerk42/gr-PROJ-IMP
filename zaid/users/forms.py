@@ -38,6 +38,9 @@ class UserSignupForm(SignupForm):
     Default fields will be added automatically.
     Check UserSocialSignupForm for accounts created from social.
     """
+    def save(self, request):
+        user = super(UserSignupForm, self).save(request)
+        return user
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -54,10 +57,9 @@ class UserSignupForm(SignupForm):
         self.fields['password1'].widget.attrs['data-jsv-min'] = '6'
         self.fields['password1'].widget.attrs['data-jsv-max'] = '255'
         # Password Confirm
-        self.fields['password2'].widget.attrs['data-jsv-validators'] = 'require,length,compare'
+        self.fields['password2'].widget.attrs['data-jsv-validators'] = 'require,compare'
         self.fields['password2'].widget.attrs['data-jsv-compare'] = 'password1'
-        self.fields['password2'].widget.attrs['data-jsv-min'] = '6'
-        self.fields['password2'].widget.attrs['data-jsv-max'] = '255'
+   
 
 
 class UserLoginForm(LoginForm):
