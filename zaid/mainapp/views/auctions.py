@@ -2,7 +2,10 @@ from django.shortcuts import render, redirect
 from ..forms import AuctionForm
 from ..models import Auction
 from django.contrib import messages
+from django.http import HttpResponse
 import logging
+
+
 
 # Create your views here.
 def auctions(request):
@@ -23,7 +26,7 @@ def create_auction(request):
     if not request.user.is_authenticated:
         return redirect("account_login")
     if request.method == "POST":
-        form = AuctionForm(request.POST)
+        form = AuctionForm(request.POST,request.FILES)
         if form.is_valid():
             try:
                 form.save()
@@ -34,4 +37,10 @@ def create_auction(request):
                 logger.error(str(e))
                 messages.error(request, "an error occurred try again later")
                 return redirect("new_auction")
+        else:
+            context = {"form": form}
+            return render(request, "auctions/new.html", context=context)
 
+    else:
+        context = {"form": AuctionForm}
+        return render(request, "auctions/new.html", context=context)

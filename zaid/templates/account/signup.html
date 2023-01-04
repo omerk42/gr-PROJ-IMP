@@ -20,7 +20,7 @@
                     <h2 class="mb-3">Sign Up to <span class="text-primary">Zaid</span></h2>
                     <p>Fill up the below fields to create an account</p>
                 </div>
-                <form data-jsv-form-incomplete-tooltip="[MESSAGE]"	 data-jsv-form="true" class="form-horizontal" method="post" action="{% url 'account_signup' %}">
+                <form id="form" data-jsv-form="true" class="form-horizontal" method="post" action="{% url 'account_signup' %}">
                     {% csrf_token %}
                     {% crispy form %}
                     {% if redirect_field_value %}
@@ -28,7 +28,7 @@
                     {% endif %}
                     <p class="mb-4 form-text">By signing up, you agree to our Terms and conditions and Privacy Policy
                     </p>
-                    <button class="btn btn-dark w-100" type="submit">Create an Account</button>
+                    <button form="form" class="btn btn-dark w-100" type="submit">Create an Account</button>
                 </form>
                 <span class="d-block my-4">— or sign up with —</span>
                 <ul class="btns-group d-flex">

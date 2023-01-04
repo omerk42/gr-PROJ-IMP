@@ -1,12 +1,19 @@
 from django.forms import ModelForm
-
+from django.shortcuts import redirect
 from .models import *
 
 class AuctionForm(ModelForm):
       class Meta:
         model = Auction
         fields =  ['name','description','image','minimal_price']
-      
+
+
+      def form_valid(self, form):
+        if not self.request.user.is_authenticated:
+          return redirect("account_login")
+          
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
       def __init__(self, *args, **kwargs):
          super().__init__(*args, **kwargs)
 
