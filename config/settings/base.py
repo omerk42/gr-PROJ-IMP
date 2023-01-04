@@ -8,8 +8,8 @@ import environ
 ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # zaid/
 APPS_DIR = ROOT_DIR / "zaid"
-env = environ.Env()
 
+env = environ.Env()
 env.read_env(str(ROOT_DIR / ".env"))
 
 # GENERAL
@@ -39,10 +39,13 @@ LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
-    "default": env.db(
-        "DATABASE_URL",
-        default="postgres:///zaid",
-    ),
+    "default":{
+	"ENGINE": "django.db.backends.postgresql_psycopg2",
+        "DATABASE_URL": env("DATABASE_URL"),
+	"NAME": env("DATABASE_NAME"),
+	"USER": env("DATABASE_USER"),
+	"PASSWORD": env("DATABASE_PASS"),
+    }
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 # https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_AUTO_FIELD
