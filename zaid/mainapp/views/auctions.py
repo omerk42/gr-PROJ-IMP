@@ -1,16 +1,37 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from ..forms import AuctionForm
+from ..models import Auction
+from django.contrib import messages
+import logging
+
 # Create your views here.
 def auctions(request):
-    return render(request,"base.html")
+    auctions = Auction.objects.all()
+    print(auctions)
+    return render(request, "base.html")
 
 
 def new_auction(request):
     if not request.user.is_authenticated:
-        return redirect("login")
-    context= {"form":AuctionForm}
- 
-    return render(request,"auctions/new.html",)
+        return redirect("account_login")
+    context = {"form": AuctionForm}
+
+    return render(request, "auctions/new.html", context=context)
+
 
 def create_auction(request):
-    pass
+    if not request.user.is_authenticated:
+        return redirect("account_login")
+    if request.method == "POST":
+        form = AuctionForm(request.POST)
+        if form.is_valid():
+            try:
+                form.save()
+                messages.success(request, "Auctions added successfully")
+                return redirect("auctions")
+            except Exception as e:
+                logger = logging.getLogger(__name__)
+                logger.error(str(e))
+                messages.error(request, "an error occurred try again later")
+                return redirect("new_auction")
+
