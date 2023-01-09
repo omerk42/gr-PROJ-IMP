@@ -43,8 +43,9 @@ DATABASES = {
 	"ENGINE": "django.db.backends.postgresql_psycopg2",
         "DATABASE_URL": env("DATABASE_URL"),
 	"NAME": env("DATABASE_NAME"),
+    "HOST": env("DATABASE_HOST"),
 	"USER": env("DATABASE_USER"),
-	"PASSWORD": env("DATABASE_PASS"),
+	"PASSWORD": env("DATABASE_PASSWORD"),
     }
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True

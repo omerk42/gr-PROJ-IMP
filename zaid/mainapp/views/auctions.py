@@ -10,8 +10,10 @@ import logging
 # Create your views here.
 def auctions(request):
     auctions = Auction.objects.all()
-    print(auctions)
-    return render(request, "base.html")
+    
+    print(auctions[0].image)
+    context = {auctions:auctions}
+    return render(request, "base.html",context=context)
 
 
 def new_auction(request):
