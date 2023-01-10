@@ -22,7 +22,7 @@ class Auction(models.Model):
     description = models.TextField(max_length=2000,null=False)
     status = models.ForeignKey("Status",on_delete=models.CASCADE,default=1)
     image = models.ImageField()
-    accepted_bid = models.ForeignKey("Bid",on_delete=models.CASCADE,null=True)
+    accepted_bid = models.ForeignKey("Bid",on_delete=models.CASCADE,null=True,related_name="accepted_bid")
     minimal_price = models.DecimalField(max_digits=14,decimal_places=2,default=0.00)
     created_by  = models.ForeignKey("users.user",on_delete=models.CASCADE,default=1)
     created_at  = models.DateTimeField(auto_now_add=True)
@@ -32,6 +32,7 @@ class Bid(models.Model):
     class Meta:
         db_table = "bids"
     id = models.AutoField(primary_key=True)
+    auction = models.ForeignKey("Auction",on_delete=models.CASCADE,related_name="bids",default=1)
     price = models.DecimalField(max_digits=14,decimal_places=2)
     created_by  = models.ForeignKey("users.user",on_delete=models.CASCADE)
     created_at  = models.DateTimeField(auto_now_add=True)
